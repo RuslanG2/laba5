@@ -1,11 +1,5 @@
-<HTML><head> <title> Скачивание </title> <style>
-   body {
-    background: #B0C4DE; /* Цвет фона */
-    
-   }
-  </style> </head><BODY>
 <?php
-unlink('OS_table.xlsx');
+
 $servername = "localhost";
 $username = "f0481741";
 $password= "rukiunevni";
@@ -22,6 +16,7 @@ $result = mysqli_query($link, $query2) or die("Ошибка " . mysqli_error($li
 //$query1 = mysqli_query($link, "SELECT * FROM os");
 //$myrow = mysqli_fetch_array($query1);
 
+
   require_once 'PHPExcel/Classes/PHPExcel.php';
 
   $phpexcel = new PHPExcel(); 
@@ -36,6 +31,7 @@ $result = mysqli_query($link, $query2) or die("Ошибка " . mysqli_error($li
   $page->setCellValue("G1", "Дата приобретения");   
   $page->setCellValue("H1", "Дата окончания");  
   $page->setCellValue("I1", "URL");  
+
 
 $s = 2;
 if($result){
@@ -54,11 +50,22 @@ while($row=mysqli_fetch_array($result))
   $s++;
 } }
   $page->setTitle("Example"); 
-  $objWriter = PHPExcel_IOFactory::createWriter($phpexcel, 'Excel2007');
-  $objWriter->save("OS_table.xlsx");
 
+
+$objWriter = PHPExcel_IOFactory::createWriter($phpexcel, 'Excel2007');
+header('Content-Type: application/vnd.ms-excel');
+header('Content-Disposition: attachment; filename="OS_table.xlsx"');
+
+$objWriter->save('php://output');
+
+exit;
 ?>
-
+<HTML><head> <title> Скачивание </title> <style>
+   body {
+    background: #B0C4DE; /* Цвет фона */
+    
+   }
+  </style> </head><BODY>
 <a href="http://f0481741.xsph.ru/bduser2/OS_table.xlsx" download="OS_table.xlsx">Скачать сфоримированную таблицу</a>
 
 </BODY>

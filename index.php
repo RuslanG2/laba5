@@ -186,7 +186,13 @@ print("<P>Всего ключей: $num_rows </p>");
 
 
 <BR><h2>Скачать таблицу:</h2>
+<?php 
+ if (file_exists('OS_table.xlsx')){
+  unlink('OS_table.xlsx');
+ }
+ ?>
 <p> <a href="generator.php"> Сформировать exel файл </a>
+<p> <a href="generator_pdf.php"> Сформировать pdf файл </a>
 
 
 </body> </html>
