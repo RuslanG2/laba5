@@ -6,7 +6,7 @@ $password= "rukiunevni";
  $dbname ="f0481741_users";
 $link = mysqli_connect($servername, $username, $password, $dbname);
 
-$query2 ="SELECT os.name, os.type, os.bit, os.admin, os.kolvo, digital_keys.key, digital_keys.date_s, digital_keys.date_f, digital_shop.url
+$query2 ="SELECT os.name, os.type, os.bit, os.admin, os.kolvo, digital_keys.key, DATE_FORMAT( digital_keys.date_s, '%d.%m.%Y' ) AS date_s,  DATE_FORMAT( digital_keys.date_f, '%d.%m.%Y' ) AS date_f, digital_shop.url
 FROM os INNER JOIN digital_keys
 ON os.id_user=digital_keys.user_id
 JOIN digital_shop

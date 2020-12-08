@@ -23,7 +23,7 @@ $password= "rukiunevni";
 	$a=$_GET['id_key'];
 	
 	
-$query ="SELECT * FROM digital_keys WHERE id_key=".$a; 
+$query ="SELECT *, DATE_FORMAT(date_s, '%d.%m.%Y') as date_s, DATE_FORMAT(date_f, '%d.%m.%Y') as date_f  FROM digital_keys WHERE id_key=".$a;
 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
  
  

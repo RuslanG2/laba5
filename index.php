@@ -33,7 +33,6 @@ die ("Невозможно подключиться к серверу" . $conn->
  $link = mysqli_connect($servername, $username, $password, $dbname) 
     or die("Ошибка " . mysqli_error($link)); 
 $query ="SELECT  * FROM os";
- 
 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
 if($result)
 {
@@ -147,7 +146,7 @@ die ("Невозможно подключиться к серверу" . $conn->
 
  $link = mysqli_connect($servername, $username, $password, $dbname) 
     or die("Ошибка " . mysqli_error($link)); 
-$query ="SELECT  * FROM digital_keys";
+$query ="SELECT *, DATE_FORMAT(date_s, '%d.%m.%Y') as date_s, DATE_FORMAT(date_f, '%d.%m.%Y') as date_f FROM `digital_keys`";
  
 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
 if($result)
